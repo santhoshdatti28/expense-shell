@@ -38,27 +38,27 @@ echo "script started and executing at : $timestamp" &>>log_file_name
 dnf install nginx -y &>>log_file_name
 VALIDATE $? "installing nginx"
 
-systemctl enable nginx 
+systemctl enable nginx &>>log_file_name
 VALIDATE $? "enabling nginx"
 
-systemctl start nginx
+systemctl start nginx &>>log_file_name
 VALIDATE $? "starting nginx"
 
-rm -rf /usr/share/nginx/html/*
+rm -rf /usr/share/nginx/html/* &>>log_file_name
 VALIDATE $? "removing files"
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>log_file_name
 VALIDATE $? "downloading the code"
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html &>>log_file_name
 VALIDATE $? "going inside html"
 
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>>log_file_name
 VALIDATE $? "unzipping code"
 
-cp /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf
+cp /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>log_file_name
 VALIDATE $? "coping expense.conf file"
 
-systemctl restart nginx
+systemctl restart nginx &>>log_file_name
 VALIDATE $? "starting nginx"
 
