@@ -48,3 +48,12 @@ VALIDATE $? "starting mysql"
 
 mysql -h mysql.santhoshdatti.online -u root -pExpenseApp@1 -e 'show databases; &>>$log_file_name
 VALIDATE $? "setting up root password"
+
+if [ $? -ne 0 ]
+then
+    echo "root password is not set"
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "root password set up"
+else
+    echo -e "password is already setup...$Y Skipping $N"
+fi
