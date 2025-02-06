@@ -63,6 +63,8 @@ VALIDATE $? "downloading the code"
 cd /app
 VALIDATE $? "going inside app dir"
 
+rm -rf * &>>log_file_name
+
 unzip /tmp/backend.zip &>>log_file_name
 VALIDATE $? "unzipping the code"
 
