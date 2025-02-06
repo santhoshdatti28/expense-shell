@@ -30,7 +30,7 @@ VALIDATE(){
     fi
 }
 
-CHECKROOT
+CHECK_ROOT
 
 mkdir -p $logs_folder
 
@@ -61,7 +61,7 @@ VALIDATE $? "unzipping the code"
 npm install &>>log_file_name
 VALIDATE $? "installing dependncies"
 
-cp /home/ec2-user/backend.service /etc/systemd/system/backend.service &>>log_file_name
+cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service &>>log_file_name
 VALIDATE $? "coping backend.service"
 
 dnf install mysql -y &>>log_file_name
