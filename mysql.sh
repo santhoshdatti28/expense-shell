@@ -27,7 +27,7 @@ CHECK_ROOT(){
     if [ $userid -ne 0 ]
     then 
         echo "ERROR: you do not have access"
-        exit1
+        exit 1
     fi
 }
 
@@ -46,7 +46,7 @@ VALIDATE $? "enabling mysql"
 systemctl start mysqld &>>$log_file_name
 VALIDATE $? "starting mysql"
 
-mysql -h mysql.santhoshdatti.online -u root -pExpenseApp@1 -e 'show databases; &>>$log_file_name
+mysql -h mysql.santhoshdatti.online -u root -pExpenseApp@1 -e 'show databases'; &>>$log_file_name
 VALIDATE $? "setting up root password"
 
 if [ $? -ne 0 ]
